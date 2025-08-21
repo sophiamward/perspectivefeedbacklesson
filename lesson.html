@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perspective‑Taking & Cognitive Flexibility — Pre‑work (10 min)</title>
+  <style>
+    /* ========= Base + Theme ========= */
+    :root{
+      --bg: #0b1020;
+      --ink: #0f172a;
+      --ink-2: #334155;
+      --card: #ffffff;
+      --brand-1: #6366f1; /* indigo */
+      --brand-2: #22d3ee; /* cyan */
+      --accent: #06b6d4;
+      --good: #16a34a;
+      --bad: #ef4444;
+      --muted: #94a3b8;
+      --ring: #93c5fd;
+    }
+    html, body{margin:0;padding:0}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--ink);
+      background: linear-gradient(180deg, #eef2ff 0%, #ffffff 20%, #f8fafc 100%);
+    }
+    .wrap{max-width: 980px; margin: 0 auto; padding: 16px;}
+
+    /* ========= Header ========= */
+    .hero{
+      position: relative;
+      border-radius: 20px;
+      padding: 28px 24px 80px 24px;
+      color: white;
+      overflow: hidden;
+      background: radial-gradient(1200px 500px at 10% -10%, rgba(99,102,241,.8), transparent 60%),
+                  radial-gradient(900px 400px at 90% 0%, rgba(34,211,238,.6), transparent 50%),
+                  linear-gradient(135deg, #1e293b 0%, #0f172a 60%, #111827 100%);
+      box-shadow: 0 12px 30px rgba(2,6,23,.25);
+    }
+    .hero h1{margin:0 0 8px 0; font-size: clamp(1.4rem, 2.6vw, 2.2rem); letter-spacing: .2px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      background: rgba(255,255,255,.12); color: #e2e8f0;
+      border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding:6px 12px; font-size:.9rem;
+    }
+    .wave{
+      position:absolute; inset:auto 0 0 0; height:90px; pointer-events:none;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+      -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="white" d="M0,256L48,256C96,256,192,256,288,213.3C384,171,480,85,576,58.7C672,32,768,64,864,80C960,96,1056,96,1152,117.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"/></svg>') center/cover no-repeat;
+    }
+
+    /* ========= Cards & Layout ========= */
+    .grid{display:grid; gap:16px; grid-template-columns: 1fr;}
+    @media (min-width: 880px){ .grid{ grid-template-columns: 1fr 1fr; } }
+
+    .card{
+      background: var(--card);
+      border-radius: 18px; padding: 18px 18px 20px 18px;
+      box-shadow: 0 10px 24px rgba(2,6,23,.08);
+      border: 1px solid #e5e7eb;
+    }
+    .card h2{margin:.2rem 0 0.6rem 0; font-size: 1.3rem}
+    .muted{color: var(--muted)}
+    .badge{display:inline-block; padding:4px 10px; border-radius:999px; background:#eef2ff; color:#4338ca; font-weight:600; font-size:.8rem}
+
+    /* ========= Progress ========= */
+    .progress{display:flex; align-items:center; gap:10px; margin-top:10px}
+    .bar{flex:1; height:10px; background:#e2e8f0; border-radius:999px; overflow:hidden}
+    .bar>i{display:block; height:100%; width:0%; background: linear-gradient(90deg, var(--brand-1), var(--brand-2)); transition: width .4s ease}
+    .pct{font-variant-numeric: tabular-nums; font-weight:700}
+
+    /* ========= Micro‑lesson ========= */
+    .klist{display:grid; gap:10px}
+    .kitem{display:flex; gap:12px; align-items:flex-start; padding:12px; border:1px dashed #e5e7eb; border-radius:12px; background:#f8fafc}
+    .kitem svg{flex:0 0 auto}
+    .exgrid{display:grid; gap:10px}
+    @media (min-width: 700px){ .exgrid{grid-template-columns: 1fr 1fr} }
+    .example{border-radius:12px; padding:12px; background:#f1f5f9; border:1px solid #e2e8f0}
+    .example.rigid{background:#fef2f2; border-color:#fecaca}
+    .example.flex{background:#f0fdf4; border-color:#bbf7d0}
+
+    /* ========= Quiz ========= */
+    .q{margin: 8px 0 16px 0; border:1px solid #e5e7eb; border-radius:14px; padding:12px}
+    .q h3{margin:0 0 8px 0; font-size:1.05rem}
+    .q .choices{display:grid; gap:8px}
+    .choice{display:flex; gap:8px; align-items:flex-start; padding:8px 10px; border-radius:10px; border:1px solid #e5e7eb; background:#fff}
+    .choice input{margin-top:3px}
+    .q .actions{display:flex; gap:8px; margin-top:10px}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:12px; border:1px solid #dbeafe; background:linear-gradient(180deg,#ebf5ff,#fff); color:#1e293b; cursor:pointer; font-weight:600}
+    .btn:hover{box-shadow:0 6px 14px rgba(2,6,23,.08)}
+    .btn.secondary{background:#f8fafc; border-color:#e5e7eb}
+    .fb{margin-top:10px; padding:10px; border-radius:10px; display:none}
+    .fb.good{background:#ecfdf5; border:1px solid #bbf7d0; color:#14532d}
+    .fb.bad{background:#fef2f2; border:1px solid #fecaca; color:#7f1d1d}
+
+    /* ========= Scenario builder ========= */
+    .scenario .steps{display:grid; gap:12px}
+    @media (min-width: 720px){ .scenario .steps{grid-template-columns: 1fr 1fr} }
+    .field{background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:12px}
+    .field label{font-weight:700; display:block; margin-bottom:4px}
+    .field textarea{width:100%; min-height:85px; border:1px solid #e2e8f0; border-radius:10px; padding:10px; font: inherit}
+    .gen{margin-top:10px; display:flex; gap:10px; flex-wrap:wrap}
+    .output{border:1px dashed #cbd5e1; background:#f8fafc; border-radius:12px; padding:12px; min-height:70px}
+    .coach{display:grid; gap:8px; margin-top:10px}
+    .coach .check{display:flex; align-items:center; gap:10px}
+    .check i{width:12px; height:12px; border-radius:50%; background:#e2e8f0; display:inline-block}
+    .check.ok i{background:linear-gradient(90deg,#16a34a,#22c55e)}
+
+    /* ========= References ========= */
+    details{border:1px solid #e5e7eb; border-radius:14px; padding:12px; background:#fff}
+    summary{cursor:pointer; font-weight:700}
+    .ref{margin:6px 0}
+
+    /* ========= Footer ========= */
+    .footer{display:flex; flex-wrap:wrap; align-items:center; gap:10px; justify-content:space-between; margin-top:16px}
+    .done{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:12px; background:linear-gradient(90deg,var(--brand-1),var(--brand-2)); color:#fff; font-weight:700}
+    .print{color:#334155; text-decoration:underline; cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <header class="hero" role="banner" aria-label="Module header">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <span class="pill" title="Estimated time">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 6v6l4 2" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+          Est. 10 minutes
+        </span>
+        <span class="pill" title="Pre‑clinical audience">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v4M6 6h12M6 10h12M6 14h12M6 18h12" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+          M1 Pre‑work
+        </span>
+      </div>
+      <h1>Perspective‑Taking & Cognitive Flexibility for Effective Feedback</h1>
+      <p class="muted" style="color:#cbd5e1">Before our workshop, explore how centering others’ viewpoints and staying mentally flexible sharpens your feedback to peers, faculty, and patients—and supports your wellness.</p>
+      <div class="progress" aria-label="Progress toward completion">
+        <div class="bar" aria-hidden="true"><i id="progressFill"></i></div>
+        <span class="pct" id="progressPct">0%</span>
+      </div>
+      <div class="wave"></div>
+    </header>
+
+    <!-- Micro‑Lesson & Examples -->
+    <section class="grid" style="margin-top:16px" aria-label="Micro‑lesson and examples">
+      <article class="card" id="micro">
+        <span class="badge">Micro‑Lesson</span>
+        <h2>Key concepts (Abernethy) & Cognitive Flexibility</h2>
+        <div class="klist">
+          <div class="kitem">
+            <!-- empathy icon -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6-3.33-8.485-5.818C2.1 13.768 2 11.2 4 9.5A5 5 0 0 1 12 8a5 5 0 0 1 8 1.5c2 1.7 1.9 4.268.485 5.682C18 17.67 12 21 12 21Z" stroke="#22d3ee" stroke-width="2"/></svg>
+            <div>
+              <strong>Perspective‑Taking (Abernethy’s Four‑Step Technique)</strong>
+              <ol style="margin:6px 0 0 18px">
+                <li><strong>Seek Understanding:</strong> Intentionally set aside your own goals; center the other person’s lived experience.</li>
+                <li><strong>Ideate:</strong> Imagine several ways they might be seeing the situation; note obstacles and possibilities.</li>
+                <li><strong>Hypothesize:</strong> Narrow to your best testable guess(es) about their perspective and expected outcomes.</li>
+                <li><strong>Observe & Adjust:</strong> Engage, listen, and revise your assumptions with curiosity.</li>
+              </ol>
+            </div>
+          </div>
+          <div class="kitem">
+            <!-- brain icon -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 6a3 3 0 1 0-2 5.236V18a3 3 0 1 0 6 0v-1M16 6a3 3 0 1 1 2 5.236V18a3 3 0 1 1-6 0v-1" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/></svg>
+            <div>
+              <strong>Cognitive Flexibility</strong> is the ability to shift mental sets, consider alternative explanations, and adapt behavior when context changes—without becoming rigid or defensive. It supports learning, performance, and mental health and is linked to lower burnout risk in healthcare settings.
+              <div class="muted" style="margin-top:6px">Why it matters in medicine: reduces diagnostic anchoring, improves patient rapport and adherence, enhances team learning, and protects wellness under stress.</div>
+            </div>
+          </div>
+        </div>
+        <hr style="margin:14px 0"/>
+        <h3 style="margin:0 0 8px 0">Quick clinical‑education examples</h3>
+        <div class="exgrid">
+          <div class="example rigid">
+            <strong>Rigid / defensive response</strong>
+            <p><em>Context:</em> Anatomy lab TA notes your dissection landmarks are off. You think, “But I followed the atlas.”</p>
+            <p><em>Reply:</em> “I did it the way the book says. I don’t see the issue.”</p>
+            <ul>
+              <li>No effort to seek the TA’s perspective</li>
+              <li>Anchors on one source; learning stalls</li>
+              <li>Stress rises → risk of frustration/burnout</li>
+            </ul>
+          </div>
+          <div class="example flex">
+            <strong>Curious / adaptive response</strong>
+            <p><em>Context:</em> Same scenario.</p>
+            <p><em>Reply:</em> “Could you show me what you’re seeing? I may be anchoring on the atlas image. If I’m off, how can I adjust my approach for tomorrow’s lab?”</p>
+            <ul>
+              <li>Centers the TA’s view → specific, actionable input</li>
+              <li>Adapts strategy; learning accelerates</li>
+              <li>Psychological flexibility → steadier mood & efficacy</li>
+            </ul>
+          </div>
+        </div>
+        <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
+          <button class="btn" data-action="mark-read">Mark micro‑lesson as read</button>
+          <span class="muted">Tip: You’ll unlock progress as you go.</span>
+        </div>
+      </article>
+
+      <!-- Knowledge Check -->
+      <article class="card" id="quiz">
+        <span class="badge">Knowledge Check ×3</span>
+        <h2>Check your understanding</h2>
+
+        <div class="q" data-answer="b">
+          <h3>1) Step 1 of Abernethy’s technique (“Seek Understanding”) means…</h3>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="q1" value="a">Focusing on your goals so you can persuade the other person quickly.</label>
+            <label class="choice"><input type="radio" name="q1" value="b">Mindfully setting aside your own goals to center the other person’s lived experience.</label>
+            <label class="choice"><input type="radio" name="q1" value="c">Jumping to your best hypothesis so you can test it immediately.</label>
+          </div>
+          <div class="actions"><button class="btn" data-action="check">Submit</button><button class="btn secondary" data-action="rationale">Show rationale</button></div>
+          <div class="fb good" role="alert">Correct! Centering the other person comes first; your goals pause.</div>
+          <div class="fb bad" role="alert">Not quite. Step 1 is about temporarily letting go of your goals and focusing on their perspective.</div>
+        </div>
+
+        <div class="q" data-answer="c">
+          <h3>2) Cognitive flexibility is best described as…</h3>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="q2" value="a">Confidence that your first impression is usually right.</label>
+            <label class="choice"><input type="radio" name="q2" value="b">Agreeing with others to avoid conflict.</label>
+            <label class="choice"><input type="radio" name="q2" value="c">The capacity to shift mental sets, consider alternatives, and adapt as context changes.</label>
+          </div>
+          <div class="actions"><button class="btn" data-action="check">Submit</button><button class="btn secondary" data-action="rationale">Show rationale</button></div>
+          <div class="fb good" role="alert">Yes. Flexibility = noticing, shifting, and adapting—not people‑pleasing.</div>
+          <div class="fb bad" role="alert">Try again. Flexibility is about adapting thinking/behavior when conditions change.</div>
+        </div>
+
+        <div class="q" data-answer="a">
+          <h3>3) Which response shows cognitive flexibility in a team‑based learning session?</h3>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="q3" value="a">“I may be anchoring on my notes. What evidence supports your view? Let’s compare sources.”</label>
+            <label class="choice"><input type="radio" name="q3" value="b">“We’re wasting time—let’s just vote. I’m confident I’m right.”</label>
+            <label class="choice"><input type="radio" name="q3" value="c">“This is subjective; there’s no point debating.”</label>
+          </div>
+          <div class="actions"><button class="btn" data-action="check">Submit</button><button class="btn secondary" data-action="rationale">Show rationale</button></div>
+          <div class="fb good" role="alert">Exactly. It notices possible bias, asks for evidence, and invites adjustment.</div>
+          <div class="fb bad" role="alert">Look for language that stays curious, seeks data, and leaves room to change.</div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Scenario Builder -->
+    <section class="card scenario" id="scenario" style="margin-top:16px" aria-label="Practice scenario">
+      <span class="badge">Practice Scenario</span>
+      <h2>Draft course/instructor feedback using perspective‑taking + flexibility</h2>
+      <p class="muted">Scenario: A pre‑clinical pharmacology lecture moved quickly, slides were dense, and exam items emphasized mechanisms not covered explicitly. Draft feedback you might submit to the course director/instructor. Use the four steps to scaffold your message, then generate a concise feedback note.</p>
+      <div class="steps">
+        <div class="field"><label for="s1">1) Seek Understanding</label><textarea id="s1" placeholder="What might the instructor’s goals/constraints be (e.g., schedule pressure, depth targets, board alignment)? What would it be like from their seat?"></textarea></div>
+        <div class="field"><label for="s2">2) Ideate</label><textarea id="s2" placeholder="List 2–3 plausible perspectives the instructor could hold about pacing/content."></textarea></div>
+        <div class="field"><label for="s3">3) Hypothesize</label><textarea id="s3" placeholder="Your best testable guess about their perspective + what you’d expect to observe if you’re right."></textarea></div>
+        <div class="field"><label for="s4">4) Observe & Adjust</label><textarea id="s4" placeholder="What questions will you ask? How will you signal openness and adjust based on their response?"></textarea></div>
+      </div>
+      <div class="gen">
+        <button class="btn" data-action="build">Build feedback note</button>
+        <button class="btn secondary" data-action="copy" aria-label="Copy generated note">Copy</button>
+        <button class="btn secondary" data-action="sample">Show model example</button>
+      </div>
+      <div class="output" id="out" aria-live="polite"></div>
+      <div class="coach" id="coach">
+        <div class="check" data-k="istatement"><i></i><span>Uses respectful <strong>“I” statements</strong> more than accusatory “you”.</span></div>
+        <div class="check" data-k="curiosity"><i></i><span>Signals <strong>curiosity</strong> (e.g., “help me understand…”, “I’m wondering…”, questions included).</span></div>
+        <div class="check" data-k="specific"><i></i><span>Includes <strong>specifics</strong> (e.g., timing, slide #, example) to make feedback actionable.</span></div>
+        <div class="check" data-k="invite"><i></i><span><strong>Invites collaboration</strong> or next step (e.g., open to adjustments / conversation).</span></div>
+      </div>
+    </section>
+
+    <!-- References -->
+    <section class="card" style="margin-top:16px" aria-label="References and further reading">
+      <span class="badge">References & Further Reading</span>
+      <h2>Perspective‑taking & flexibility in learning, care, and wellness</h2>
+      <details>
+        <summary>Show references</summary>
+        <div class="ref">Abernethy, A. L. <em>Four‑step Perspective‑Taking Technique</em>: Seek Understanding → Ideate → Hypothesize → Observe & Adjust. (Workshop materials, summarized in module.)</div>
+        <div class="ref">Bond, F. W., & Flaxman, P. E. (2006). Psychological flexibility & job control predict learning, performance, and mental health. <em>Journal of Organisational Behaviour Management</em>, 26, 113–130.</div>
+        <div class="ref">Eckleberry‑Hunt JG, et al. (2009). Burnout during residency training: a literature review. <em>J Grad Med Educ</em>, 1(2):236–242.</div>
+        <div class="ref">Lloyd J, Bond FW, Flaxman PE. (2013). Psychological flexibility & burnout mechanisms. <em>Work & Stress</em>, 27(2):181–189.</div>
+        <div class="ref">Martin M.M., Anderson C.M. (1998). The Cognitive Flexibility Scale. <em>Communication Reports</em>, 11:3–9.</div>
+        <div class="ref">Houser MM, et al. (2017). “Try it on: Cognitive flexibility & perspective‑taking skills to enhance wellness in medical learners & teachers.” STFM 50th Annual Spring Conference.</div>
+        <div class="ref">Eckleberry‑Hunt J, Kirkpatrick H. (2016). Assessing wellness in psychology: Examples from medicine. National Register of Health Service Psychologists. <a href="https://www.nationalregister.org/pub/the-national-register-report-pub/the-register-report-spring-2016/assessing-wellness-in-psychology-examples-from-medicine/" target="_blank" rel="noopener">Link</a></div>
+        <div class="ref">Ruby P, Decety J. (2003). What you believe vs. what you think they believe: a neuroimaging study of conceptual perspective taking. <em>J European Neuroscience</em>, 17:2475‑2480.</div>
+        <div class="ref">Martinelli S., Bass C., Zakrajsek T., Mayer D. (2015). Don’t fall in the (generation) gap! MedEdPORTAL. <a href="https://www.mededportal.org/publication/10206" target="_blank" rel="noopener">Link</a></div>
+      </details>
+    </section>
+
+    <div class="footer">
+      <div class="done" id="doneBadge" style="opacity:.25">✔ Pre‑work completed</div>
+      <a class="print" href="javascript:void(0)" id="printBtn">Print / Save as PDF</a>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const progress = { micro:false, q1:false, q2:false, q3:false, scenario:false };
+      const fill = document.getElementById('progressFill');
+      const pct = document.getElementById('progressPct');
+      const done = document.getElementById('doneBadge');
+
+      function updateProgress(){
+        const total = Object.keys(progress).length;
+        const doneCount = Object.values(progress).filter(Boolean).length;
+        const p = Math.round((doneCount/total)*100);
+        fill.style.width = p + '%';
+        pct.textContent = p + '%';
+        done.style.opacity = (p === 100) ? 1 : .25;
+      }
+
+      // Micro‑lesson mark read
+      document.querySelector('[data-action="mark-read"]').addEventListener('click', function(){
+        progress.micro = true; updateProgress(); this.setAttribute('disabled','disabled'); this.textContent = 'Marked ✓';
+      });
+
+      // Quiz handling
+      document.querySelectorAll('.q').forEach((q, idx)=>{
+        const answer = q.getAttribute('data-answer');
+        const name = 'q'+(idx+1);
+        q.querySelector('[data-action="check"]').addEventListener('click', ()=>{
+          const picked = q.querySelector('input[type="radio"]:checked');
+          if(!picked){ alert('Please choose an option.'); return; }
+          const ok = picked.value === answer;
+          q.querySelector('.fb.good').style.display = ok ? 'block' : 'none';
+          q.querySelector('.fb.bad').style.display = ok ? 'none' : 'block';
+          if(ok){
+            q.querySelectorAll('input,input+label').forEach(el=> el.setAttribute('disabled','disabled'));
+            // set progress flag
+            progress['q'+(idx+1)] = true; updateProgress();
+          }
+        });
+        q.querySelector('[data-action="rationale"]').addEventListener('click', ()=>{
+          const msg = {
+            0: 'Seek Understanding = pause your goals and center theirs. Persuasion comes later, if at all.',
+            1: 'Flexibility = shift sets, consider alternatives, adapt to context—not agreeability or certainty in first impressions.',
+            2: 'Flexible responses name potential bias, invite evidence, and remain open to changing course.'
+          }[idx];
+          alert(msg);
+        });
+      });
+
+      // Scenario builder
+      const out = document.getElementById('out');
+      function analyze(text){
+        const checks = {
+          istatement: /(\bI\b|I\s+felt|I\s+noticed|From\s+my\s+perspective)/i.test(text) && !/^you\b/i.test(text.trim()),
+          curiosity: /(help me understand|I\'?m wondering|could you|curious|would you be open|might we)/i.test(text),
+          specific: /(slide|minute|exam|example|mechanism|Q\d|lecture|pacing|timestamp|case)/i.test(text),
+          invite: /(open to|next time|adjust|work together|happy to|conversation|discuss)/i.test(text)
+        };
+        document.querySelectorAll('.coach .check').forEach(row=>{
+          const k = row.getAttribute('data-k');
+          row.classList.toggle('ok', !!checks[k]);
+        });
+      }
+
+      document.querySelector('[data-action="build"]').addEventListener('click', ()=>{
+        const s1 = document.getElementById('s1').value.trim();
+        const s2 = document.getElementById('s2').value.trim();
+        const s3 = document.getElementById('s3').value.trim();
+        const s4 = document.getElementById('s4').value.trim();
+        const note = `Hello Dr. ____,\n\nFrom my perspective as an M1, I may have missed how the pacing connected to the key mechanisms. I imagine there may be schedule constraints and a goal to align with boards (${s1 || 'e.g., depth + time constraints'}). Considering a few possibilities (${s2 || 'e.g., prioritizing synthesis over detail; assuming prereq coverage'}), my best hypothesis is: ${s3 || 'the emphasis was intentional to build mechanism reasoning, but some links were implicit'}.\n\nCould you help me understand which mechanisms you intended us to master from this session? Two specifics that confused me were [slide/minute/example]. If helpful, one small adjustment that would support my learning would be a brief signpost before dense slides or a 60‑sec pause for self‑check questions.\n\nI’m open to adapting my study approach and would appreciate any guidance. Happy to discuss or try a quick follow‑up Q&A.\n\nThank you for your teaching.`;
+        out.textContent = note;
+        analyze(note);
+        progress.scenario = true; updateProgress();
+      });
+
+      document.querySelector('[data-action="copy"]').addEventListener('click', ()=>{
+        const text = out.textContent.trim();
+        if(!text){ alert('Build your note first.'); return; }
+        navigator.clipboard.writeText(text).then(()=> alert('Copied to clipboard.'));
+      });
+
+      document.querySelector('[data-action="sample"]').addEventListener('click', ()=>{
+        const sample = `Hello Dr. Lee,\n\nFrom my perspective as a first‑year student, I may have anchored on memorizing the receptor list and missed how the mechanisms connected. I imagine you were balancing time and aiming to model board‑style thinking. My best hypothesis is that the rapid pacing was meant to encourage synthesis across pathways; if so, I’d expect vignette‑style examples.\n\nCould you help me understand which two mechanisms you most wanted us to master today? For example, at minute ~32 the slide on beta‑blockers moved quickly and I wasn’t sure which clinical takeaway mattered most. A 60‑second pause or a “key mechanism” marker would help me check understanding in the moment.\n\nI’m open to adjusting how I prepare and would appreciate any pointers. Happy to follow up briefly during office hours.\n\nThank you for your teaching.`;
+        out.textContent = sample; analyze(sample);
+        progress.scenario = true; updateProgress();
+      });
+
+      document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>
